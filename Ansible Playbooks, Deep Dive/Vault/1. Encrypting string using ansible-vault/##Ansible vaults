@@ -1,0 +1,104 @@
+##Ansible vaults
+
+# create a vault to the ansible_become_pass' 'password'
+
+## ansible-vault encrypt_string --ask-vault-pass --name 'ansible_become_pass' 'password'
+
+# the it prompts for new password
+
+  ## in the above we gave variable name ansible_become_pass and value we gave password
+
+# ##Ansible vaults
+
+# create a vault to the ansible_become_pass' 'password'
+
+## ansible-vault encrypt_string --ask-vault-pass --name 'ansible_become_pass' 'password'
+
+# then it prompts for password
+
+  ## in the above we gave variable name ansible_become_pass and value we gave password
+
+# we can put the output in the hostvars or group vars file to use to connect remote hosts
+
+#we can encrypt a file using ansible-vault encrypt file.txt
+
+# provide reference in the playbook using vars_files:
+
+  vars_files:
+    - vars/main.yml
+
+and when we are playing playbook use _ask_vault_pass to enter the password to make ansible decrypt and use the file
+
+ansible-playbook --ask-vault-pass playbook.yaml
+
+.....................................................
+
+add a password in file (give_any_name.txt ot use .file.txt)
+
+and use the password using 
+
+ansible-playbook --vault-password-file ~/.vault_pass.txt playbook.yaml
+
+........................................................................
+
+ansible-vault have rekey option to provide new password to the vault.txt or any vault file
+
+ansible-vault rekey palybook.txt
+
+it will ask for present password and new password
+...................................................................
+
+ansible-vault view playbook.txt
+
+it will ask for password then it will show you the contents
+
+
+...................................................................
+
+another way to view 
+
+ansible-vault view --value-id @prompt encrypted.yaml
+
+..................................................................
+
+ansible-vault view --vault-id @passwordfile.txt encrypted.yaml
+
+.................................................................
+
+encrypting name with vault name
+
+
+ansible-vault encrypt --vault-id nameofvault@prompt toencrypt.yaml
+
+
+
+to playbook we have to use
+
+ansible-playbook --vault-id nameofvault@prompt --vault-id nameofvault@passwordfile.txt playbook.yaml
+
+
+If we have vault names we get to know which one we aregiving passwords for
+
+
+we can encrypt playbook
+
+
+ansible-vault --vault-id vaultnameofpalybook@prompt plabookname.yaml
+
+
+ansible-playbook --vault-id vaultnameofpalybook@prompt playbook.yaml
+
+........................................................................
+
+ansible-playbook --vault-id nameofvault@prompt --vault-id nameofvault@passwordfile.txt --vault-id vaultnameofpalybook@prompt playbook.yaml
+
+
+
+........................................................................
+
+ansible-playbook --vault-id vaultname@prompt --vault-password-file ~/.vault_pass.txt little.yaml 
+
+
+............................
+
+

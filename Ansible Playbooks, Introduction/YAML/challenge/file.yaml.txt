@@ -1,0 +1,19 @@
+---
+
+dictionaries:
+  dictionary1:
+    - list1
+    - list2
+  dictionary2:
+    - dict:
+        - list3
+        - list4
+  dictionary:
+    - diction : value
+
+
+
+
+
+
+...

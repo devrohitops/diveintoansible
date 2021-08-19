@@ -1,0 +1,9 @@
+# Every YAML file should start with three dashes
+---
+#you can add anything without quote but if we use : or # it will take it as mapping and comments to avoid that use double quotes or single quotes (to escape the /)
+no_quotes: this is a string example
+double_quotes: "this is a string example"
+single_quotes: 'this is a string example'
+ 
+# Every YAML file should end with three dots
+...
